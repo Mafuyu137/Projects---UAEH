@@ -127,16 +127,6 @@ public interface Actions {
     return -1;
 }
 
-    // No esta el paciente
-    static boolean hayPaciente (ArrayList<Paciente> lista, int id){
-        for (int i = 0; i < lista.size(); i++){
-            Paciente check = lista.get(i);
-
-            if (check.getNoPaciente() == id) return true;
-        }
-        return false;
-    }
-
     // Buscar médico por ID, devuelve el índice si existe; -1 en caso contrario
     static int buscarIndiceMedico(ArrayList<Medico> medicos, String idEmpleado) {
     
@@ -174,23 +164,21 @@ public interface Actions {
         return false;
     }
 
-    // Comprobar si existe una consulta con ese número
-    static boolean hayConsulta(ArrayList<Consulta> consultas, int noConsulta) {
-    
-        for (Consulta consulta : consultas) {
-            if (consulta.getNoConsulta() == noConsulta) {
-                return true;
-            }
+    // Comprobar si existe un objeto Paciente o Consulta
+    static <T> boolean existe (ArrayList<T> lista, int id){
+        for (int i = 0; i < lista.size(); i++){
+            T check = lista.get(i);
+
+            if (check.getNoPaciente() == id) return true;
         }
-    
         return false;
     }
-
-    //Busqueda de una consulta
-    static int hayConsulta(ArrayList<Consulta> lista, int noConsulta) {
+    
+    //Busqueda de una clase Consulta o Paciente
+    static <T> int buscar (ArrayList<T> lista, int noConsulta) {
     
         for (int i = 0; i > lista.size; i++) {
-            Consulta check = lista.get(i);
+            T check = lista.get(i);
             if (check.getNoConsulta() == noConsulta) return i;
             }
         return -1;
