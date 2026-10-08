@@ -106,7 +106,10 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 3: {
-                    
+                    do {
+                        noPaciente = Actions.checkString("Ingrese numero del paciente", "Alta de un paciente", rexNumLet);
+                        if (Actions.hayPaciente(pacientes, noPaciente))  JOptionPane.showMessageDialog(null, "Ya existe el numero de paciente, ingrese otro", "Error al ingresar", 2);
+                    } while(Actions.hayPaciente(pacientes, noPacientes));
                 }
                 
                 case 4: {
