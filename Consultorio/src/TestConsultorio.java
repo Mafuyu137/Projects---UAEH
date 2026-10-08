@@ -130,11 +130,29 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 5: {
-                    
+                    String lista = "";
+
+                    for (int i = 0; i < medicos.size(); i++){
+                        Medico check = medicos.get(i);
+
+                        if (check instanceof General) lista += check.getDatos();
+                    }
+
+                    if (lista.equals("") ) JOptionPane.showMessageDialog(null, lista, "Lista de medicos familiares", 3);
+                    else JOptionPane.showMessageDialog(null, "No hay medicos guardados", "Lista de medicos familiares", 3);
                 }
                 
                 case 6: {
-                    
+                     String lista = "";
+
+                    for (int i = 0; i < medicos.size(); i++){
+                        Medico check = medicos.get(i);
+
+                        if (check instanceof Especialista) lista += check.getDatos();
+                    }
+
+                    if (lista.equals("") ) JOptionPane.showMessageDialog(null, lista, "Lista de medicos especialistas", 3);
+                    else JOptionPane.showMessageDialog(null, "No hay medicos guardados", "Lista de medicos especialistas", 3);
                 }
                 
                 case 7: {
