@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.zip.Checksum;
 import javax.swing.JOptionPane;
 import pck_consultorio.*;
 import pck_fecha.*;
@@ -164,11 +165,29 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 9: {
-                    
+                    id = Actions.checkString("Ingrese el ID del medico a consultar", "Consultar un medico", "id");
+
+                    int i = Actions.hayId(medicos, id);
+                    if (i != -1){
+                        if (medicos.get(i) instanceof General) JOptionPane.showMessageDialog(null, medicos.get(i).getDatos(), "Consultar un medico", 3);
+                        else JOptionPane.showMessageDialog(null, "No hay un medico general registrado con ese ID", "Consultar un medico", 2);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "No hay un medico general registrado con ese ID", "Consultar un medico", 2);
+                    }
                 }
                 
                 case 10: {
-                    
+                    id = Actions.checkString("Ingrese el ID del medico a consultar", "Consultar un medico", "id");
+
+                    int i = Actions.hayId(medicos, id);
+                    if (i != -1){
+                        if (medicos.get(i) instanceof Especialista) JOptionPane.showMessageDialog(null, medicos.get(i).getDatos(), "Consultar un medico", 3);
+                        else JOptionPane.showMessageDialog(null, "No hay un medico especialista registrado con ese ID", "Consultar un medico", 2);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "No hay un medico especialista registrado con ese ID", "Consultar un medico", 2);
+                    }
                 }
                 
                 case 11: {

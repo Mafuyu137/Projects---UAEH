@@ -118,15 +118,15 @@ public interface Actions {
     }
 
     // No esta el id para medico
-    static boolean hayId (ArrayList<Medico> lista, String id){
+    static int hayId (ArrayList<Medico> lista, String id){
         for (int i = 0; i < lista.size(); i++){
             Medico check = lista.get(i);
 
             if (check instanceof General){
-                if (check.getIdEmpleado().equals(id)) return true;
+                if (check.getIdEmpleado().equals(id)) return i;
             }
         }
-        return false;
+        return -1;
     }
 
     // No esta el paciente
