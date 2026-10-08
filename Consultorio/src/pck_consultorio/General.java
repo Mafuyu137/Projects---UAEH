@@ -44,4 +44,10 @@ public class General extends Medico {
     public int getConsultorio() {
         return consultorio;
     }
+
+    @Override
+    public String getDatos(){
+        String get = super.getDatos();
+        return get + getTurno() + "   " + getConsultorio() +  "\n";
+    }
 }

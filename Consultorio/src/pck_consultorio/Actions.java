@@ -97,27 +97,22 @@ public interface Actions {
         return num;
     }
 
-    // Entrada de strings con num y let
+    // Entrada de strings
     static String checkString(String aboutVar, String titleBox, String rex) {
         String s;
 
         do {
             s = JOptionPane.showInputDialog(null, aboutVar, titleBox, 3);
-
-            if (s == null) {
-                return null; // Usuario presiono Cancelar
-            }
-
             s = s.trim();
 
             if (s.isBlank()) {
                 JOptionPane.showMessageDialog(null,"La entrada no debe estar vacía","Error de entrada",2);
             } 
-            else if (!s.matches("rex")) {
+            else if (!s.matches(rex)) {
                 JOptionPane.showMessageDialog(null,"La entrada tiene valores invalidos","Error de entrada",2);
             }
 
-        } while (s.isBlank() || !s.matches("rex"));
+        } while (s.isBlank() || !s.matches(rex));
 
         return s;
     }
@@ -135,7 +130,7 @@ public interface Actions {
     }
 
     // No esta el paciente
-    static boolean hayId (ArrayList<Paciente> lista, int id){
+    static boolean hayPaciente (ArrayList<Paciente> lista, int id){
         for (int i = 0; i < lista.size(); i++){
             Paciente check = lista.get(i);
 
@@ -161,7 +156,7 @@ public interface Actions {
             if (!fecha.fechaCorrecta()) JOptionPane.showMessageDialog(null, "La fecha no existe", "Error", 2);
             else if (!fecha.esAnteriorOIgual(hoy)) JOptionPane.showMessageDialog(null, "La fecha no puede ser despues del 9 / 10 / 2026", "Error", 2);
             
-        } while (!fecha.fechaCorrecta() || fecha.esAnteriorOIgual(hoy));
+        } while (!fecha.fechaCorrecta() || !fecha.esAnteriorOIgual(hoy));
 
         return fecha;
     }
@@ -172,7 +167,7 @@ public interface Actions {
         Fecha fechaNacimiento;
         do { 
             Fecha hoy = new Fecha(9, 10, 2026);
-            fechaNacimiento = Actions.ingresoFecha("Nacimiento", "ALta de un medico familiar");
+            fechaNacimiento = Actions.ingresoFecha("Alta de un medico familiar", "Nacimiento");
             
             edad = fechaNacimiento.calcularEdad(hoy);
 

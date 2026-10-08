@@ -111,4 +111,13 @@ public class Medico implements Serializable {
     public String getFechaContratacion() {
         return fechaContratacion.getFecha();
     }
+
+    public String getDatos(){
+        return getIdEmpleado() + "   " + 
+               getNombre() + "   " + 
+               getDireccion() + "   " + 
+               getTelefono() + "   " +
+               getFechaNacimiento() + "   " +
+               getFechaContratacion() + "   ";
+    }
 }

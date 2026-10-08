@@ -24,7 +24,7 @@ public class TestConsultorio implements Actions{
         String rexNumLet = "[a-zA-Z0-9]+";
         String rexLet = "[a-zA-Z]+";
         String rexNum = "[0-9]+";
-        String rexCorreo = "[a-zA-Z0-9@.]]+";
+        String rexCorreo = "[a-zA-Z0-9@.]+";
         
         // Programa Principal
         int opc;
@@ -75,10 +75,10 @@ public class TestConsultorio implements Actions{
 
                     // Para la fecha actual se utilizara el 09 / 10 / 2026
                     fechaNacimiento = Actions.fNacimiento();
-                    fechaContratacion = Actions.ingresoFecha("Contratacion", "Alta de un medico");
+                    fechaContratacion = Actions.ingresoFecha("Alta de un medico", "Contratacion");
 
-                    turno = Actions.checkString("Ingresa el turno", "Alata de un medico", "turno");
-                    consultorio = Actions.entradaNumerica(1, 7, "Ingresa el No. de consultorio", "ALta de un medico", "No. consultorio");
+                    turno = Actions.checkString("Ingresa el turno", "Alta de un medico", "turno");
+                    consultorio = Actions.entradaNumerica(1, 7, "Ingresa el No. de consultorio", "Alta de un medico", "No. consultorio");
 
                     General grl = new General(id, nombre, direccion, telefono, fechaNacimiento, fechaContratacion, turno, consultorio);
                     medicos.add(grl);
@@ -122,7 +122,7 @@ public class TestConsultorio implements Actions{
                     correo = Actions.checkString("Correo: \n", "Alta de un paciente", rexCorreo);
 
                     Paciente pcnt = new Paciente (noPaciente,nombre,direccion,telefono,fechaNacimiento,correo);
-                    
+                    pacientes.add(pcnt);
                 }
                 
                 case 4: {
