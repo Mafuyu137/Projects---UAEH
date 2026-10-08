@@ -13,8 +13,8 @@ public class TestConsultorio implements Actions{
         
         // Lectura de los archivos
         Actions.cargarLista("Medicos.txt", medicos);
-        Actions.cargarLista("Pacientes.txt", consultas);
-        Actions.cargarLista("Consultas.txt", pacientes);
+        Actions.cargarLista("Pacientes.txt", pacientes);
+        Actions.cargarLista("Consultas.txt", consultas);
 
         // Variables a utilizar
         String id, nombre, turno, especialidad, area, correo, direccion, telefono, enfermer, diagnostico;
