@@ -3,7 +3,7 @@ import javax.swing.JOptionPane;
 import pck_consultorio.*;
 import pck_fecha.*;
 
-public class TestConsultorio implements Actions{
+public class Marco implements Actions{
     public static void main(String[] args) {
         // Arreglos dinamicos
         ArrayList <Medico> medicos = new ArrayList <>();

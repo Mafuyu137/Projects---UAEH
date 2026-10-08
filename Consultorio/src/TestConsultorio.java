@@ -24,6 +24,7 @@ public class TestConsultorio implements Actions{
         String rexNumLet = "[a-zA-Z0-9]+";
         String rexLet = "[a-zA-Z]+";
         String rexNum = "[0-9]+";
+        String rexCorreo = "[a-zA-Z0-9@.]]+";
         
         // Programa Principal
         int opc;
@@ -109,7 +110,8 @@ public class TestConsultorio implements Actions{
                     do {
                         noPaciente = Actions.entradaNumerica(0,1000,"Ingrese numero del paciente", "Alta de un paciente", rexNumLet);
                         if (Actions.hayPaciente(pacientes, noPaciente))  JOptionPane.showMessageDialog(null, "Ya existe el numero de paciente, ingrese otro", "Error al ingresar", 2);
-                    } while(Actions.hayPaciente(pacientes, noPacientes));
+                    } while(Actions.hayPaciente(pacientes, noPaciente));
+                    
                     nombre = Actions.checkString("Ingrese el nombre del paciente: \n", "Alta de un pacienter", rexLet);
                     direccion = Actions.checkString("Direccion: \n", "Alta de un paciente", rexNumLet);
                     telefono = Actions.checkString("Telefono: \n", "Alta de un paciente", rexNum);
@@ -119,7 +121,8 @@ public class TestConsultorio implements Actions{
                     
                     correo = Actions.checkString("Correo: \n", "Alta de un paciente", rexCorreo);
 
-                    Paciente = pcnt = new Paciente (noPaciente,nombre,direccion,telefono,fechaNacimiento,correo);
+                    Paciente pcnt = new Paciente (noPaciente,nombre,direccion,telefono,fechaNacimiento,correo);
+                    
                 }
                 
                 case 4: {
