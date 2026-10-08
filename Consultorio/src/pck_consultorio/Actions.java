@@ -180,11 +180,9 @@ public interface Actions {
         for (int i = 0; i > lista.size; i++) {
             T check = lista.get(i);
             if (check.getNoConsulta() == noConsulta) return i;
-            }
-        return -1;
         }
     
-        return false;
+        return -1;
     }
 
     // Validar todas las referencias de las consultas
