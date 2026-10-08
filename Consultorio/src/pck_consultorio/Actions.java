@@ -137,6 +137,89 @@ public interface Actions {
         return false;
     }
 
+// Buscar médico por ID, devuelve el índice si existe; -1 en caso contrario
+static int buscarIndiceMedico(
+        ArrayList<Medico> medicos, String idEmpleado) {
+
+    for (int i = 0; i < medicos.size(); i++) {
+        if (medicos.get(i).getIdEmpleado().equals(idEmpleado)) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+// Comprobar si un médico tiene consultas asociadas
+static boolean tieneConsultasMedico(
+        ArrayList<Consulta> consultas, String idEmpleado) {
+
+    for (Consulta consulta : consultas) {
+        if (consulta.getIdEmpleado().equals(idEmpleado)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Comprobar si un paciente tiene consultas asociadas
+static boolean tieneConsultasPaciente(
+        ArrayList<Consulta> consultas, int noPaciente) {
+
+    for (Consulta consulta : consultas) {
+        if (consulta.getNoPaciente() == noPaciente) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Comprobar si existe una consulta con ese número
+static boolean hayConsulta(
+        ArrayList<Consulta> consultas, int noConsulta) {
+
+    for (Consulta consulta : consultas) {
+        if (consulta.getNoConsulta() == noConsulta) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Validar todas las referencias de las consultas
+static boolean validarIntegridad(
+        ArrayList<Medico> medicos,
+        ArrayList<Paciente> pacientes,
+        ArrayList<Consulta> consultas) {
+
+    for (Consulta consulta : consultas) {
+
+        if (buscarIndiceMedico(
+                medicos, consulta.getIdEmpleado()) == -1) {
+            JOptionPane.showMessageDialog(
+                null,
+                "La consulta " + consulta.getNoConsulta()
+                + " referencia a un médico inexistente."
+            );
+            return false;
+        }
+
+        if (!hayPaciente(pacientes, consulta.getNoPaciente())) {
+            JOptionPane.showMessageDialog(
+                null,
+                "La consulta " + consulta.getNoConsulta()
+                + " referencia a un paciente inexistente."
+            );
+            return false;
+        }
+    }
+
+    return true;
+}
+
     // Ingreso de una fecha valida
     static Fecha ingresoFecha(String titulo, String minDato){
         Fecha fecha;
