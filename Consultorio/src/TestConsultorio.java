@@ -18,7 +18,7 @@ public class TestConsultorio implements Actions{
         // Variables a utilizar
         String id, nombre, turno, especialidad, area, correo, direccion, telefono, enfermer, diagnostico;
         Fecha fechaNacimiento, fechaContratacion, fechaConsulta;
-        int noConsulta, noPaciente, consultorio;
+        int noConsulta, noPaciente, consultorio, aBorrar, cnfrm;
 
         // Funcionalidades
         String rexNumLet = "[a-zA-Z0-9]+";
@@ -328,19 +328,74 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 13: {
-                    
+                    if(medicos.isEmpty())
+                        JOptionPane.showMessageDialog(null,"Aun no hay medicos dados de alta","Eliminar un medico familiar",1);
+                    else{
+                        id = Actions.checkString("Ingrese el ID:\n", "Eliminar un medico familiar", rexNumLet);
+                        aBorrar = Actions.hayId(medicos, id, "general");
+                        if(aBorrar == -2)
+                            JOptionPane.showMessageDialog(null,"El ID ingresado no corresponde a un medico familiar","Eliminar un medico familiar",1);
+                        else if(aBorrar == -1)
+                            JOptionPane.showMessageDialog(null,"No existe un medico registrado con el ID ingresado","Eliminar un medico familiar",1);
+                        else{
+                            cnfrm = JOptionPane.showConfirmDialog(null, medicos.get(aBorrar).getDatos() + "\n\n¿Esta seguro de eliminar este medico?",
+                                    "Eliminar un medico familiar",JOptionPane.YES_NO_OPTION,2);
+                            if (cnfrm == JOptionPane.YES_OPTION){
+                                ArrayList <Integer> auxList = Actions.listaConsultas(consultas, id);
+                                for(int n : auxList) consultas.remove(n);
+                                medicos.remove(aBorrar);
+                                JOptionPane.showMessageDialog(null,"Medico eliminado con exito","Eliminar un medico familiar",1);
+                            }
+                        }
+                    }
 
                     break;
                 }
                 
                 case 14: {
-                    
+                    if(medicos.isEmpty())
+                        JOptionPane.showMessageDialog(null,"Aun no hay medicos dados de alta","Eliminar un medico especialista",1);
+                    else{
+                        id = Actions.checkString("Ingrese el ID:\n", "Eliminar un medico especialista", rexNumLet);
+                        aBorrar = Actions.hayId(medicos, id, "especialista");
+                        if(aBorrar == -2)
+                            JOptionPane.showMessageDialog(null,"El ID ingresado no corresponde a un medico especialista","Eliminar un medico especialista",1);
+                        else if(aBorrar == -1)
+                            JOptionPane.showMessageDialog(null,"No existe un medico registrado con el ID ingresado","Eliminar un medico especialista",1);
+                        else{
+                            cnfrm = JOptionPane.showConfirmDialog(null, medicos.get(aBorrar).getDatos() + "\n\n¿Esta seguro de eliminar este medico?",
+                                    "Eliminar un medico especialista",JOptionPane.YES_NO_OPTION,2);
+                            if (cnfrm == JOptionPane.YES_OPTION){
+                                ArrayList <Integer> auxList = Actions.listaConsultas(consultas, id);
+                                for(int n : auxList) consultas.remove(n);
+                                medicos.remove(aBorrar);
+                                JOptionPane.showMessageDialog(null,"Medico eliminado con exito","Eliminar un medico familiar",1);
+                            }
+                        }
+                    }
 
                     break;
                 }
                 
                 case 15: {
-                    
+                    if(pacientes.isEmpty())
+                        JOptionPane.showMessageDialog(null,"Aun no hay pacientes dados de alta","Eliminar un paciente",1);
+                    else{
+                        noPaciente = Actions.entradaNumerica(0,1000,"Ingrese numero del paciente", "Eliminar un paciente", rexNumLet);
+                        aBorrar = Actions.hayPaciente(pacientes, noPaciente);
+                        if (aBorrar == -1)
+                            JOptionPane.showMessageDialog(null,"No se encontro una paciente con el numero ingresado","Eliminar un paciente",1);
+                        else{
+                            cnfrm = JOptionPane.showConfirmDialog(null, pacientes.get(aBorrar).getDatos() + "\n\n¿Esta seguro de eliminar este paciente?",
+                                    "Eliminar un paciente",JOptionPane.YES_NO_OPTION,2);
+                            if (cnfrm == JOptionPane.YES_OPTION){
+                                ArrayList <Integer> auxList = Actions.listaConsultas(consultas, noPaciente);
+                                for(int n : auxList) consultas.remove(n);
+                                pacientes.remove(aBorrar);
+                                JOptionPane.showMessageDialog(null,"Paciente eliminado con exito","Eliminar un paciente",1);
+                            }
+                        }
+                    }
 
                     break;
                 }
