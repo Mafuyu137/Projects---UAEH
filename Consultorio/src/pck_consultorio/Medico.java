@@ -122,7 +122,7 @@ public class Medico implements Serializable {
     }
 
     public String getDatosTab(){
-        return "\nId Empleado: " getIdEmpleado() 
+        return "\nId Empleado: " + getIdEmpleado() 
             + "\tNombre:" + getNombre() 
             + "\tDireccion: " + getDireccion() 
             + "\tTelefono" + getTelefono() 
