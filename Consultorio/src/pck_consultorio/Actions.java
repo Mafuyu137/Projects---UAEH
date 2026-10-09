@@ -141,7 +141,7 @@ public interface Actions {
         for (int i = 0; i < lista.size(); i++){
             Consulta check = lista.get(i);
 
-            if (check.getNoPaciente() == id) return i;
+            if (check.getNoConsulta() == id) return i;
         }
         return -1;
     }
