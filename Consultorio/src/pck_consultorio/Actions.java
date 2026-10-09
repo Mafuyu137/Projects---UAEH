@@ -81,15 +81,14 @@ public interface Actions {
 
             try {
                 String ent = JOptionPane.showInputDialog(null, dato, titulo, 3);
-
                 num = Integer.parseInt(ent);
 
                 if (num < l || num > r) {
-                    JOptionPane.showMessageDialog(null, "El " + minDato + " debe estar entre " + l + " y " + r, "Valor invalido", 2);
+                    JOptionPane.showMessageDialog(null, "El(la) " + minDato + " debe estar entre " + l + " y " + r, "Valor invalido", 2);
                 }
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "El " + minDato + " debe ser numerico", "Error de formato", 2);
+                JOptionPane.showMessageDialog(null, "El(la) " + minDato + " debe ser numerico", "Error de formato", 2);
             }
 
         } while (num < l || num > r);
@@ -117,31 +116,38 @@ public interface Actions {
         return s;
     }
 
-    // No esta el id para medico
-   static int hayId(ArrayList<Medico> lista, String id) {
-    for (int i = 0; i < lista.size(); i++) {
-        if (lista.get(i).getIdEmpleado().equals(id)) {
-            return i;
-        }
-    }
-    return -1;
-}
+    // checar si esta id medico
+    static int hayId(ArrayList<Medico> lista, String id) {
+        for (int i = 0; i < lista.size(); i++) {
+            Medico check = lista.get(i);
 
-    // Buscar médico por ID, devuelve el índice si existe; -1 en caso contrario
-    static int buscarIndiceMedico(ArrayList<Medico> medicos, String idEmpleado) {
-    
-        for (int i = 0; i < medicos.size(); i++) {
-            if (medicos.get(i).getIdEmpleado().equals(idEmpleado)) {
-                return i;
-            }
+            if (check.equals(id)) return i;
         }
-    
         return -1;
     }
 
-// Comprobar si un médico tiene consultas asociadas
+     // checar si esta paciente
+    static int hayPaciente (ArrayList<Paciente> lista, int id){
+        for (int i = 0; i < lista.size(); i++){
+            Paciente check = lista.get(i);
+
+            if (check.getNoPaciente() == id) return i;
+        }
+        return -1;
+    }
+
+    // checar si hay consulta
+    static int hayConsulta (ArrayList<Consulta> lista, int id){
+        for (int i = 0; i < lista.size(); i++){
+            Consulta check = lista.get(i);
+
+            if (check.getNoPaciente() == id) return i;
+        }
+        return -1;
+    }
+
+    // Comprobar si un medico tiene consultas asociadas
     static boolean tieneConsultasMedico(ArrayList<Consulta> consultas, String idEmpleado) {
-    
         for (Consulta consulta : consultas) {
             if (consulta.getIdEmpleado().equals(idEmpleado)) {
                 return true;
@@ -151,10 +157,8 @@ public interface Actions {
         return false;
     }
 
-// Comprobar si un paciente tiene consultas asociadas
-    static boolean tieneConsultasPaciente(
-            ArrayList<Consulta> consultas, int noPaciente) {
-    
+    // Comprobar si un paciente tiene consultas asociadas
+    static boolean tieneConsultasPaciente(ArrayList<Consulta> consultas, int noPaciente) {
         for (Consulta consulta : consultas) {
             if (consulta.getNoPaciente() == noPaciente) {
                 return true;
@@ -164,48 +168,17 @@ public interface Actions {
         return false;
     }
 
-    // Comprobar si existe un objeto Paciente o Consulta
-    static <T> boolean existe (ArrayList<T> lista, int id){
-        for (int i = 0; i < lista.size(); i++){
-            T check = lista.get(i);
-
-            if (check.getNoPaciente() == id) return true;
-        }
-        return false;
-    }
-    
-    //Busqueda de una clase Consulta o Paciente
-    static <T> int buscar (ArrayList<T> lista, int noConsulta) {
-    
-        for (int i = 0; i > lista.size; i++) {
-            T check = lista.get(i);
-            if (check.getNoConsulta() == noConsulta) return i;
-        }
-    
-        return -1;
-    }
-
     // Validar todas las referencias de las consultas
     static boolean validarIntegridad(ArrayList<Medico> medicos,ArrayList<Paciente> pacientes,ArrayList<Consulta> consultas) {
-    
         for (Consulta consulta : consultas) {
     
-            if (buscarIndiceMedico(
-                    medicos, consulta.getIdEmpleado()) == -1) {
-                JOptionPane.showMessageDialog(
-                    null,
-                    "La consulta " + consulta.getNoConsulta()
-                    + " referencia a un médico inexistente."
-                );
+            if (hayId(medicos, consulta.getIdEmpleado()) == -1) {
+                JOptionPane.showMessageDialog(null,"La consulta " + consulta.getNoConsulta() + " referencia a un medico inexistente");
                 return false;
             }
     
-            if (!hayPaciente(pacientes, consulta.getNoPaciente())) {
-                JOptionPane.showMessageDialog(
-                    null,
-                    "La consulta " + consulta.getNoConsulta()
-                    + " referencia a un paciente inexistente."
-                );
+            if (hayPaciente(pacientes, consulta.getNoPaciente()) == -1) {
+                JOptionPane.showMessageDialog(null, "La consulta " + consulta.getNoConsulta() + " referencia a un paciente inexistente");
                 return false;
             }
         }

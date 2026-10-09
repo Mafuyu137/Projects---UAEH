@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.zip.Checksum;
 import javax.swing.JOptionPane;
 import pck_consultorio.*;
 import pck_fecha.*;
@@ -19,13 +18,14 @@ public class TestConsultorio implements Actions{
         // Variables a utilizar
         String id, nombre, turno, especialidad, area, correo, direccion, telefono, enfermer, diagnostico;
         Fecha fechaNacimiento, fechaContratacion, fechaConsulta;
-        int d, m, a, noConsulta, noPaciente, consultorio;
+        int noConsulta, noPaciente, consultorio;
 
         // Funcionalidades
         String rexNumLet = "[a-zA-Z0-9]+";
-        String rexLet = "[a-zA-Z]+";
+        String rexLet = "[a-zA-Z\s]+";
         String rexNum = "[0-9]+";
         String rexCorreo = "[a-zA-Z0-9@.]+";
+        String rexNumLetEsp = "[a-zA-Z0-9\s]+";
         
         // Programa Principal
         int opc;
@@ -67,11 +67,11 @@ public class TestConsultorio implements Actions{
                 case 1: {
                     do { 
                         id = Actions.checkString("Ingrese el ID:\n", "Alta de un medico familiar", rexNumLet);
-                        if (Actions.hayId(medicos, id)) JOptionPane.showMessageDialog(null, "Ya existe el ID, ingrese otro", "Error al ingresar", 2);
-                    } while (Actions.hayId(medicos, id));
+                        if (Actions.hayId(medicos, id) != -1) JOptionPane.showMessageDialog(null, "Ya existe el ID, ingrese otro", "Error al ingresar", 2);
+                    } while (Actions.hayId(medicos, id) != -1);
 
                     nombre = Actions.checkString("Ingrese el nombre del medico: \n", "Alta de un medico familiar", rexLet);
-                    direccion = Actions.checkString("Direccion: \n", "Alta de un medico familiar", rexNumLet);
+                    direccion = Actions.checkString("Direccion: \n", "Alta de un medico familiar", rexNumLetEsp);
                     telefono = Actions.checkString("Telefono: \n", "Alta de un medico familiar", rexNum);
 
                     // Para la fecha actual se utilizara el 09 / 10 / 2026
@@ -83,13 +83,15 @@ public class TestConsultorio implements Actions{
 
                     General grl = new General(id, nombre, direccion, telefono, fechaNacimiento, fechaContratacion, turno, consultorio);
                     medicos.add(grl);
+
+                    break;
                 }
                 
                 case 2: {
                     do { 
                         id = Actions.checkString("Ingrese el ID:\n", "Alta de un medico familiar", rexNumLet);
-                        if (Actions.hayId(medicos, id)) JOptionPane.showMessageDialog(null, "Ya existe el ID, ingrese otro", "Error al ingresar", 2);
-                    } while (Actions.hayId(medicos, id));
+                        if (Actions.hayId(medicos, id) != -1) JOptionPane.showMessageDialog(null, "Ya existe el ID, ingrese otro", "Error al ingresar", 2);
+                    } while (Actions.hayId(medicos, id) != -1);
 
                     nombre = Actions.checkString("Ingrese el nombre del medico: \n", "Alta de un medico familiar", rexLet);
                     direccion = Actions.checkString("Direccion: \n", "Alta de un medico familiar", rexNumLet);
@@ -105,16 +107,18 @@ public class TestConsultorio implements Actions{
                     
                     Especialista esp = new Especialista(id, nombre, direccion, telefono, fechaNacimiento, fechaContratacion, especialidad, area, enfermer);
                     medicos.add(esp);
+
+                    break;
                 }
                 
                 case 3: {
                     do {
                         noPaciente = Actions.entradaNumerica(0,1000,"Ingrese numero del paciente", "Alta de un paciente", rexNum);
-                        if (Actions.hayPaciente(pacientes, noPaciente))  JOptionPane.showMessageDialog(null, "Ya existe el numero de paciente, ingrese otro", "Error al ingresar", 2);
-                    } while(Actions.hayPaciente(pacientes, noPaciente));
+                        if (Actions.hayPaciente(pacientes, noPaciente) != -1)  JOptionPane.showMessageDialog(null, "Ya existe el numero de paciente, ingrese otro", "Error al ingresar", 2);
+                    } while(Actions.hayPaciente(pacientes, noPaciente) != -1);
                     
                     nombre = Actions.checkString("Ingrese el nombre del paciente: \n", "Alta de un pacienter", rexLet);
-                    direccion = Actions.checkString("Direccion: \n", "Alta de un paciente", rexNumLet);
+                    direccion = Actions.checkString("Direccion: \n", "Alta de un paciente", rexNumLetEsp);
                     telefono = Actions.checkString("Telefono: \n", "Alta de un paciente", rexNum);
 
                     // Para la fecha actual se utilizara el 09 / 10 / 2026
@@ -124,6 +128,8 @@ public class TestConsultorio implements Actions{
 
                     Paciente pcnt = new Paciente (noPaciente,nombre,direccion,telefono,fechaNacimiento,correo);
                     pacientes.add(pcnt);
+
+                    break;
                 }
                 
                 case 4: {
@@ -142,12 +148,12 @@ public class TestConsultorio implements Actions{
                     //No repetir numeros de consulta
                     do {
                         noConsulta = Actions.entradaNumerica(1, 1000,"Ingrese el número de la consulta","Alta de una consulta","número de consulta");
-                        if (Actions.hayConsulta(consultas, noConsulta)) JOptionPane.showMessageDialog(null, "Ese número de consulta ya existe.");
-                    } while (Actions.hayConsulta(consultas, noConsulta));
+                        if (Actions.hayConsulta(consultas, noConsulta) != -1) JOptionPane.showMessageDialog(null, "Ese número de consulta ya existe.");
+                    } while (Actions.hayConsulta(consultas, noConsulta) != -1);
 
                     //Verificar el id del medico
                     id = Actions.checkString("Ingrese el ID del médico","Alta de una consulta",rexNumLet);
-                    if (Actions.buscarIndiceMedico(medicos, id) == -1) {
+                    if (Actions.hayId(medicos, id) == -1) {
                         JOptionPane.showMessageDialog(null, "No existe un médico con ese ID","Error de registro de consulta",2);
                         break;
                     }
@@ -155,7 +161,7 @@ public class TestConsultorio implements Actions{
                     //Verificar el numero de paciente
                     noPaciente = Actions.entradaNumerica(1, 1000,"Ingrese el número del paciente","Alta de una consulta","número de paciente"
                     );
-                    if (!Actions.hayPaciente(pacientes, noPaciente)) {
+                    if (Actions.hayPaciente(pacientes, noPaciente) == -1) {
                         JOptionPane.showMessageDialog(null, "No existe un paciente con ese número","Error de registro de consulta",2);
                         break;
                     }
@@ -163,40 +169,70 @@ public class TestConsultorio implements Actions{
                     //Validar fecha de consulta
 
                     //Leer diagnostico
+
+                    break;
                 }
                 
                 case 5: {
+                    String arriba = """
+                                    IdEmpleado      Nombre     Direccion     Telefono     F. Nacimiento   F. Contratacion     Turno     Consultorio";   
+                                    _____________________________________________________________________________________
+                                    
+                                    """;
                     String lista = "";
+                    int cnt = 0;
 
                     for (int i = 0; i < medicos.size(); i++){
                         Medico check = medicos.get(i);
 
-                        if (check instanceof General) lista += check.getDatos();
+                        if (check instanceof General){
+                            lista += check.getDatos();
+                            cnt++;
+                        }
                     }
 
-                    if (lista.equals("") ) JOptionPane.showMessageDialog(null, lista, "Lista de medicos familiares", 3);
+                    if (cnt != 0) JOptionPane.showMessageDialog(null, arriba + lista, "Lista de medicos familiares", 3);
                     else JOptionPane.showMessageDialog(null, "No hay medicos guardados", "Lista de medicos familiares", 3);
+                    
+                    break;
                 }
                 
                 case 6: {
-                     String lista = "";
+                    String arriba = """
+                                    IdEmpleado      Nombre     Direccion     Telefono     F. Nacimiento   F. Contratacion     Especialidad     Area      Enfermera(o)
+                        		    __________________________________________________________________________________________________
+
+                                    """;
+                    String lista = "";
+                            
+                            
+                    int cnt = 0;
 
                     for (int i = 0; i < medicos.size(); i++){
                         Medico check = medicos.get(i);
 
-                        if (check instanceof Especialista) lista += check.getDatos();
+                        if (check instanceof Especialista){
+                            lista += check.getDatos();
+                            cnt++;
+                        }
                     }
 
-                    if (lista.equals("") ) JOptionPane.showMessageDialog(null, lista, "Lista de medicos especialistas", 3);
+                    if (cnt != 0) JOptionPane.showMessageDialog(null, arriba + lista, "Lista de medicos especialistas", 3);
                     else JOptionPane.showMessageDialog(null, "No hay medicos guardados", "Lista de medicos especialistas", 3);
+                    
+                    break;
                 }
                 
                 case 7: {
                     
+
+                    break;
                 }
                 
                 case 8: {
                     
+
+                    break;
                 }
                 
                 case 9: {
@@ -210,6 +246,8 @@ public class TestConsultorio implements Actions{
                     else {
                         JOptionPane.showMessageDialog(null, "No hay un medico general registrado con ese ID", "Consultar un medico", 2);
                     }
+
+                    break;
                 }
                 
                 case 10: {
@@ -223,34 +261,49 @@ public class TestConsultorio implements Actions{
                     else {
                         JOptionPane.showMessageDialog(null, "No hay un medico especialista registrado con ese ID", "Consultar un medico", 2);
                     }
+
+                    break;
                 }
                 
                 case 11: {
                     
+
+                    break;
                 }
                 
                 case 12: {
                     
+
+                    break;
                 }
                 
                 case 13: {
                     
+
+                    break;
                 }
                 
                 case 14: {
                     
+
+                    break;
                 }
                 
                 case 15: {
                     
+
+                    break;
                 }
                 
                 case 16: {
                     
+
+                    break;
                 }
                 
                 case 17: {
                     JOptionPane.showMessageDialog(null,copyright,"Copyright",1);
+                    break;
                 }
                 
                 default: {
