@@ -300,30 +300,68 @@ public class TestConsultorio implements Actions{
                         JOptionPane.showMessageDialog(null,"No hay pacientes registrados","Consultar paciente",2); 
                         break; 
                     }
-                    noPaciente = Actions.entradaNumerica(0,1000,"Ingrese el número del paciente: ","Consultar paciente","número de paciente");
+                    noPaciente = Actions.entradaNumerica(0,1000,"Ingrese el numero del paciente: ","Consultar paciente","numero de paciente");
                     int i = Actions.hayPaciente(pacientes, noPaciente); 
                     if (i != -1) {  
                         JOptionPane.showMessageDialog(null,pacientes.get(i).getDatos(),"Detalle del paciente",JOptionPane.1); 
                     } else { 
-                        JOptionPane.showMessageDialog(null,"No existe un paciente con ese número", "Paciente no encontrado", JOptionPane.2); 
+                        JOptionPane.showMessageDialog(null,"No existe un paciente con ese numero", "Paciente no encontrado", JOptionPane.2); 
                     }
                     break;
                 }
-                
+            
                 case 12: {
+                    // Verificar que existan consultas registradas
                     if (consultas.isEmpty()) {
                         JOptionPane.showMessageDialog(null,"No hay consultas registradas.","Consultar consulta",JOptionPane.2);
                         break;
                     }
                 
-                    noConsulta = Actions.entradaNumerica(1, 1000,"Ingrese el número de la consulta:","Consultar consulta","número de consulta");
-                    int i = Actions.hayConsulta(consultas, noConsulta);
+                    noConsulta = Actions.entradaNumerica(1, 1000,"Ingrese el numero de la consulta:","Consultar consulta","numero de consulta");
+                    int i = Actions.hayConsulta(consultas, noConsulta);               
                     if (i != -1) {
-                        JOptionPane.showMessageDialog(null,consultas.get(i).getDatos(),"Detalle de la consulta",JOptionPane.INFORMATION_MESSAGE);
+                        Consulta consulta = consultas.get(i);
+                
+                        // Buscar medico y paciente relacionados con la consulta
+                        int indiceMedico = Actions.hayId(medicos,consulta.getIdEmpleado());
+                        int indicePaciente = Actions.hayPaciente(pacientes,consulta.getNoPaciente());
+                
+                        if (indiceMedico != -1 && indicePaciente != -1) {
+                            Medico medico = medicos.get(indiceMedico);
+                            Paciente paciente = pacientes.get(indicePaciente);
+                
+                            String tipoMedico;
+                
+                            if (medico instanceof Especialista) {
+                                tipoMedico = "MÉDICO ESPECIALISTA";
+                            } else {
+                                tipoMedico = "MÉDICO FAMILIAR";
+                            }
+                
+                            String detalle =
+                                "DETALLE DE UNA CONSULTA\n" 
+                                + "No. Consulta: " 
+                                + consulta.getNoConsulta() 
+                                + "\n\n" 
+                                + tipoMedico + "\n" 
+                                + medico.getDatos() + "\n\n" 
+                                + "PACIENTE\n" 
+                                + paciente.getDatos() + "\n\n" 
+                                + "Fecha de consulta: "
+                                + consulta.getFechaConsulta() + "\n"
+                                + "Diagnóstico: "
+                                + consulta.getDiagnostico();
+                
+                            JOptionPane.showMessageDialog(null,detalle,"Detalle de la consulta",1);
+                
+                        } else {
+                            JOptionPane.showMessageDialog(null,"No se pudo mostrar el detalle porque no se encontró el médico o el paciente relacionado con la consulta","Error de integridad",0);
+                        }
+                
                     } else {
-                        JOptionPane.showMessageDialog(null,"No existe una consulta con ese número.","Consulta no encontrada",JOptionPane.0);
+                        JOptionPane.showMessageDialog(null,"No existe una consulta con ese numero","Consulta no encontrada",0);
                     }
-                                    
+                
                     break;
                 }
                 
