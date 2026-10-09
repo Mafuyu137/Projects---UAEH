@@ -227,3 +227,25 @@ public interface Actions {
     }
 
 }
+
+// Arreglo para la eliminacion de las consultas de un medico
+    static ArrayList <Integer> listaConsultas(ArrayList <Consulta> lista, String id){
+        ArrayList <Integer> c = new ArrayList <>();
+        
+        for(int i=0; i<lista.size(); i++){
+            if(lista.get(i).getIdEmpleado().equals(id)) c.add(i);
+        }
+        
+        return c;
+    }
+    
+    // Arreglo para la eliminacion de las consultas de un paciente
+    static ArrayList <Integer> listaConsultas(ArrayList <Consulta> lista, int id){
+        ArrayList <Integer> c = new ArrayList <>();
+        
+        for(int i=0; i<lista.size(); i++){
+            if(lista.get(i).getNoPaciente() == id) c.add(i);
+        }
+        
+        return c;
+    }
