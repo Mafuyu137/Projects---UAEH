@@ -212,7 +212,7 @@ public class TestConsultorio implements Actions{
                         Medico check = medicos.get(i);
 
                         if (check instanceof Especialista){
-                            lista += check.getDatos();
+                            lista += check.getDatosTab();
                             cnt++;
                         }
                     }
@@ -224,14 +224,40 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 7: {
-                    
+                    String arriba = """
+                                    No.Paciente      Nombre      Direccion      Telefono      F. Nacimiento      Correo 
+                                    ____________________________________________________________________________________________________
+                                    
+                                    """;
+                    String lista = "";
 
+                    for (Paciente paciente : pacientes){
+                         lista += pacientes.getDatosTab();
+                    }
+
+                    //Comprobar que existen pacientes
+                    if (!pacientes.isEmpty()) JOptionPane.showMessageDialog(null, arriba + lista, "Lista de pacientes", 1);
+                    else JOptionPane.showMessageDialog(null, "No hay pacientes guardados", "Lista de ", 2)
+                    
                     break;
                 }
                 
                 case 8: {
-                    
+                    String arriba = """
+                                    No. Consulta      Id Empleado      No.Paciente      F. Consulta      Diagnostico   
+                                    _____________________________________________________________________________________
+                                    
+                                    """;
+                    String lista = "";
 
+                    for (Consulta consulta : consultas){
+                         lista += consultas.getDatosTab();
+                    }
+
+                    //Comprobar que existen consultas
+                    if (!consultas.isEmpty()) JOptionPane.showMessageDialog(null, arriba + lista, "Lista de consultas", 1);
+                    else JOptionPane.showMessageDialog(null, "No hay consultas registradas", "Lista de consultas", 2)
+                    
                     break;
                 }
                 
