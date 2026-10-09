@@ -18,7 +18,7 @@ public class TestConsultorio implements Actions{
 
         // Variables a utilizar
         String id, nombre, turno, especialidad, area, correo, direccion, telefono, enfermer, diagnostico;
-        Fecha fechaNacimiento, fechaContratacion;
+        Fecha fechaNacimiento, fechaContratacion, fechaConsulta;
         int d, m, a, noConsulta, noPaciente, consultorio;
 
         // Funcionalidades
@@ -127,10 +127,42 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 4: {
-                    do{
-                        noConsulta = Actions.entradaNumerica(0,1000,"Ingrese numero de la Consulta", "Alta de una Consulta", rexNum); 
-                        if (Actions.hayConsulta(consultas, noConsulta))  JOptionPane.showMessageDialog(null, "Ya existe el numero de consulta, ingrese otro", "Error al ingresar", 2);
-                    } while((Actions.hayConsulta(consultas, noConsulta));
+                    //Comprobar que existan medicos
+                    if (medicos.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No hay medicos para asignar una consulta","Error de registro de consulta",2);
+                        break;
+                    }
+
+                    //Comprobar que existan pacientes
+                    if (pacientes.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No hay pacientes registrados","Error de registro de consulta",2);
+                        break;
+                    }
+
+                    //No repetir numeros de consulta
+                    do {
+                        noConsulta = Actions.entradaNumerica(1, 1000,"Ingrese el número de la consulta","Alta de una consulta","número de consulta");
+                        if (Actions.hayConsulta(consultas, noConsulta)) JOptionPane.showMessageDialog(null, "Ese número de consulta ya existe.");
+                    } while (Actions.hayConsulta(consultas, noConsulta));
+
+                    //Verificar el id del medico
+                    id = Actions.checkString("Ingrese el ID del médico","Alta de una consulta",rexNumLet);
+                    if (Actions.buscarIndiceMedico(medicos, id) == -1) {
+                        JOptionPane.showMessageDialog(null, "No existe un médico con ese ID","Error de registro de consulta",2);
+                        break;
+                    }
+
+                    //Verificar el numero de paciente
+                    noPaciente = Actions.entradaNumerica(1, 1000,"Ingrese el número del paciente","Alta de una consulta","número de paciente"
+                    );
+                    if (!Actions.hayPaciente(pacientes, noPaciente)) {
+                        JOptionPane.showMessageDialog(null, "No existe un paciente con ese número","Error de registro de consulta",2);
+                        break;
+                    }
+                    
+                    //Validar fecha de consulta
+
+                    //Leer diagnostico
                 }
                 
                 case 5: {
