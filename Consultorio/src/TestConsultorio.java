@@ -147,7 +147,7 @@ public class TestConsultorio implements Actions{
 
                     //No repetir numeros de consulta
                     do {
-                        noConsulta = Actions.entradaNumerica(1, 1000,"Ingrese el número de la consulta","Alta de una consulta","número de consulta");
+                        noConsulta = Actions.entradaNumerica(0, 1000,"Ingrese el número de la consulta","Alta de una consulta","número de consulta");
                         if (Actions.hayConsulta(consultas, noConsulta) != -1) JOptionPane.showMessageDialog(null, "Ese número de consulta ya existe.");
                     } while (Actions.hayConsulta(consultas, noConsulta) != -1);
 
@@ -379,7 +379,9 @@ public class TestConsultorio implements Actions{
                                     "Eliminar un medico familiar",JOptionPane.YES_NO_OPTION,2);
                             if (cnfrm == JOptionPane.YES_OPTION){
                                 ArrayList <Integer> auxList = Actions.listaConsultas(consultas, id);
-                                for(int n : auxList) consultas.remove(n);
+                                for (int i = auxList.size() - 1; i >= 0; i--) {
+                                    consultas.remove((int) auxList.get(i));
+                                }
                                 medicos.remove(aBorrar);
                                 JOptionPane.showMessageDialog(null,"Medico eliminado con exito","Eliminar un medico familiar",1);
                             }
@@ -404,9 +406,11 @@ public class TestConsultorio implements Actions{
                                     "Eliminar un medico especialista",JOptionPane.YES_NO_OPTION,2);
                             if (cnfrm == JOptionPane.YES_OPTION){
                                 ArrayList <Integer> auxList = Actions.listaConsultas(consultas, id);
-                                for(int n : auxList) consultas.remove(n);
+                                for (int i = auxList.size() - 1; i >= 0; i--) {
+                                    consultas.remove((int)auxList.get(i));
+                                }
                                 medicos.remove(aBorrar);
-                                JOptionPane.showMessageDialog(null,"Medico eliminado con exito","Eliminar un medico familiar",1);
+                                JOptionPane.showMessageDialog(null,"Medico eliminado con exito","Eliminar un medico especialista",1);
                             }
                         }
                     }
@@ -427,7 +431,10 @@ public class TestConsultorio implements Actions{
                                     "Eliminar un paciente",JOptionPane.YES_NO_OPTION,2);
                             if (cnfrm == JOptionPane.YES_OPTION){
                                 ArrayList <Integer> auxList = Actions.listaConsultas(consultas, noPaciente);
-                                for(int n : auxList) consultas.remove(n);
+                                for (int i = auxList.size() - 1; i >= 0; i--) {
+                                    consultas.remove((int) auxList.get(i));
+                                }
+
                                 pacientes.remove(aBorrar);
                                 JOptionPane.showMessageDialog(null,"Paciente eliminado con exito","Eliminar un paciente",1);
                             }
