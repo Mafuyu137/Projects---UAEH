@@ -100,4 +100,8 @@ public class Paciente implements Serializable {
         return correo;
     }
 
+    public String getDatos() {
+        return "\nNo. Paciente: "
+    }
+
 }
