@@ -121,7 +121,7 @@ public interface Actions {
         for (int i = 0; i < lista.size(); i++) {
             Medico check = lista.get(i);
 
-            if (check.equals(id)) return i;
+            if (check.getIdEmpleado().equals(id)) return i;
         }
         return -1;
     }
