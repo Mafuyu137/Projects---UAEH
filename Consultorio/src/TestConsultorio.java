@@ -1,3 +1,8 @@
+// Desarrolladores:
+// Eric Rene Avila Galindo
+// Quintanar Medina Marco Eduardo
+// Vazquez Vizuet Angel Alexis
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import pck_consultorio.*;
@@ -75,7 +80,7 @@ public class TestConsultorio implements Actions{
                     telefono = Actions.checkString("Telefono: \n", "Alta de un medico familiar", rexNum);
 
                     // Para la fecha actual se utilizara el 09 / 10 / 2026
-                    fechaNacimiento = Actions.fNacimiento();
+                    fechaNacimiento = Actions.fNacimiento(1);
                     fechaContratacion = Actions.ingresoFecha("Alta de un medico", "Contratacion");
 
                     turno = Actions.checkString("Ingresa el turno", "Alta de un medico", rexLet);
@@ -98,7 +103,7 @@ public class TestConsultorio implements Actions{
                     telefono = Actions.checkString("Telefono: \n", "Alta de un medico familiar", rexNum);
 
                     // Para la fecha actual se utilizara el 09 / 10 / 2026
-                    fechaNacimiento = Actions.fNacimiento();
+                    fechaNacimiento = Actions.fNacimiento(1);
                     fechaContratacion = Actions.ingresoFecha("Contratacion", "Alta de un medico");
 
                     especialidad = Actions.checkString("Ingrese la especialidad", "Alta de un medico", rexLet);
@@ -122,7 +127,7 @@ public class TestConsultorio implements Actions{
                     telefono = Actions.checkString("Telefono: \n", "Alta de un paciente", rexNum);
 
                     // Para la fecha actual se utilizara el 09 / 10 / 2026
-                    fechaNacimiento = Actions.fNacimiento();
+                    fechaNacimiento = Actions.fNacimiento(2);
                     
                     correo = Actions.checkString("Correo: \n", "Alta de un paciente", rexCorreo);
 

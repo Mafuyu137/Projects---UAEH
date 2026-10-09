@@ -1,3 +1,8 @@
+// Desarrolladores:
+// Eric Rene Avila Galindo
+// Quintanar Medina Marco Eduardo
+// Vazquez Vizuet Angel Alexis
+
 package pck_consultorio;
 
 import java.io.*;
@@ -226,7 +231,7 @@ public interface Actions {
     }
 
     // Validar edades
-    static Fecha fNacimiento (){
+    static Fecha fNacimiento (int p){
         int edad = 0;
         Fecha fechaNacimiento;
         do { 
@@ -235,10 +240,17 @@ public interface Actions {
             
             edad = fechaNacimiento.calcularEdad(hoy);
 
-            if (edad < 29) JOptionPane.showMessageDialog(null, "El medico debe ser mayor de 28 anios", "Alta de un medico", 2);
-            if (edad > 50) JOptionPane.showMessageDialog(null, "El medico debe ser menor de 50 anios", "Alta de un medico", 2);
+            if (p == 1){
+                if (edad < 29) JOptionPane.showMessageDialog(null, "El medico debe ser mayor de 28 anios", "Alta de un medico", 2);
+                if (edad > 50) JOptionPane.showMessageDialog(null, "El medico debe ser menor de 50 anios", "Alta de un medico", 2);
+            }
+            else{
+                if (edad < 0) JOptionPane.showMessageDialog(null, "El paciente debe de haber nacido", "Alta de un paciente", 2);
+                if (edad > 115) JOptionPane.showMessageDialog(null, "El paciente debe tener una vida razonable (menos a 115 anios)", "Alta de un paciente", 2);
+            
+            }
 
-        } while (edad < 29 || edad > 50);
+        } while ((p == 1 && (edad < 29 || edad > 50)) || (p == 2 && (edad < 0 || edad > 115)));
 
         return fechaNacimiento;
     }

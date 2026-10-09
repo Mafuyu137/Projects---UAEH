@@ -1,3 +1,8 @@
+// Desarrolladores:
+// Eric Rene Avila Galindo
+// Quintanar Medina Marco Eduardo
+// Vazquez Vizuet Angel Alexis
+
 package pck_consultorio;
 
 import pck_fecha.Fecha;
