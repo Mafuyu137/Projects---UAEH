@@ -88,4 +88,22 @@ public class Consulta implements Serializable {
     public String getDiagnostico() {
         return diagnostico;
     }
+
+    public String getDatos() {
+        return "\nNo. Consulta: " + getNoConsulta()
+            + "\nId Empleado: " + getIdEmpleado()
+            + "\nNo. Paciente: " + getNoPaciente()
+            + "\nFecha de Consulta: " + getFechaConsultaa()
+            + "\nDiagnostico: " + getDiagnostico()
+            + "\n";
+    }
+
+    public String getDatosTab() {
+        return "\n\tNo. Consulta: " + getNoConsulta()
+            + "\tId Empleado: " + getIdEmpleado()
+            + "\tNo. Paciente: " + getNoPaciente()
+            + "\tFecha de Consulta: " + getFechaConsultaa()
+            + "\tDiagnostico: " + getDiagnostico()
+            + "\n";
+    }
 }
