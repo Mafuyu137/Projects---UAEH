@@ -99,7 +99,7 @@ public class Consulta implements Serializable {
     }
 
     public String getDatosTab() {
-        return "\n\tNo. Consulta: " + getNoConsulta()
+        return "\nNo. Consulta: " + getNoConsulta()
             + "\tId Empleado: " + getIdEmpleado()
             + "\tNo. Paciente: " + getNoPaciente()
             + "\tFecha de Consulta: " + getFechaConsultaa()
