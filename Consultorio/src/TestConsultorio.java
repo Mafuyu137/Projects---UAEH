@@ -94,14 +94,14 @@ public class TestConsultorio implements Actions{
                     } while (Actions.hayId(medicos, id) != -1);
 
                     nombre = Actions.checkString("Ingrese el nombre del medico: \n", "Alta de un medico familiar", rexLet);
-                    direccion = Actions.checkString("Direccion: \n", "Alta de un medico familiar", rexNumLet);
+                    direccion = Actions.checkString("Direccion: \n", "Alta de un medico familiar", rexNumLetEsp);
                     telefono = Actions.checkString("Telefono: \n", "Alta de un medico familiar", rexNum);
 
                     // Para la fecha actual se utilizara el 09 / 10 / 2026
                     fechaNacimiento = Actions.fNacimiento();
                     fechaContratacion = Actions.ingresoFecha("Contratacion", "Alta de un medico");
 
-                    especialidad = Actions.checkString("Ingrese la especialidad", "Alta de un medico", "especialidad");
+                    especialidad = Actions.checkString("Ingrese la especialidad", "Alta de un medico", rexLet);
                     area = Actions.checkString("Ingrese el area", "Alta de un medico", rexLet);
                     enfermer = Actions.checkString("Ingrese al enfermero(a)", "Alta de un medico", rexLet);
                     
@@ -167,8 +167,7 @@ public class TestConsultorio implements Actions{
                     
                     
                     //Validar fecha de consulta
-                    fechaConsulta = Actions.ingresoFecha("Fecha de consulta: ", "Alta de una consulta");
-
+                    fechaConsulta = Actions.ingresoFecha("Fecha de consulta: ", "consulta");
                     diagnostico = Actions.checkString("Diagnostico: ", "Alta de una consulta", rexLet);
 
                     Consulta cnslta = new Consulta (noConsulta,id,noPaciente,fechaConsulta,diagnostico);
@@ -190,7 +189,7 @@ public class TestConsultorio implements Actions{
                         Medico check = medicos.get(i);
 
                         if (check instanceof General){
-                            lista += check.getDatos();
+                            lista += check.getDatosTab();
                             cnt++;
                         }
                     }
@@ -241,7 +240,7 @@ public class TestConsultorio implements Actions{
 
                     //Comprobar que existen pacientes
                     if (!pacientes.isEmpty()) JOptionPane.showMessageDialog(null, arriba + lista, "Lista de pacientes", 1);
-                    else JOptionPane.showMessageDialog(null, "No hay pacientes guardados", "Lista de ", 2)
+                    else JOptionPane.showMessageDialog(null, "No hay pacientes guardados", "Lista de ", 2);
                     
                     break;
                 }
@@ -260,13 +259,13 @@ public class TestConsultorio implements Actions{
 
                     //Comprobar que existen consultas
                     if (!consultas.isEmpty()) JOptionPane.showMessageDialog(null, arriba + lista, "Lista de consultas", 1);
-                    else JOptionPane.showMessageDialog(null, "No hay consultas registradas", "Lista de consultas", 2)
+                    else JOptionPane.showMessageDialog(null, "No hay consultas registradas", "Lista de consultas", 2);
                     
                     break;
                 }
                 
                 case 9: {
-                    id = Actions.checkString("Ingrese el ID del medico a consultar", "Consultar un medico", "id");
+                    id = Actions.checkString("Ingrese el ID del medico a consultar", "Consultar un medico", rexNumLet);
 
                     int i = Actions.hayId(medicos, id);
                     if (i != -1){
@@ -281,7 +280,7 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 10: {
-                    id = Actions.checkString("Ingrese el ID del medico a consultar", "Consultar un medico", "id");
+                    id = Actions.checkString("Ingrese el ID del medico a consultar", "Consultar un medico", rexNumLet);
 
                     int i = Actions.hayId(medicos, id);
                     if (i != -1){
@@ -303,9 +302,9 @@ public class TestConsultorio implements Actions{
                     noPaciente = Actions.entradaNumerica(0,1000,"Ingrese el numero del paciente: ","Consultar paciente","numero de paciente");
                     int i = Actions.hayPaciente(pacientes, noPaciente); 
                     if (i != -1) {  
-                        JOptionPane.showMessageDialog(null,pacientes.get(i).getDatos(),"Detalle del paciente",JOptionPane.1); 
+                        JOptionPane.showMessageDialog(null,pacientes.get(i).getDatos(),"Detalle del paciente",1); 
                     } else { 
-                        JOptionPane.showMessageDialog(null,"No existe un paciente con ese numero", "Paciente no encontrado", JOptionPane.2); 
+                        JOptionPane.showMessageDialog(null,"No existe un paciente con ese numero", "Paciente no encontrado", 2); 
                     }
                     break;
                 }
@@ -313,7 +312,7 @@ public class TestConsultorio implements Actions{
                 case 12: {
                     // Verificar que existan consultas registradas
                     if (consultas.isEmpty()) {
-                        JOptionPane.showMessageDialog(null,"No hay consultas registradas.","Consultar consulta",JOptionPane.2);
+                        JOptionPane.showMessageDialog(null,"No hay consultas registradas.","Consultar consulta",2);
                         break;
                     }
                 

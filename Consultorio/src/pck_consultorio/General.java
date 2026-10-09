@@ -56,8 +56,7 @@ public class General extends Medico {
     @Override
     public String getDatosTab(){
         return super.getDatosTab() 
-            + "\tTurno: " + getTurno() 
-            + "\tConsultorio: " + getConsultorio() 
-            +  "\n";
+            + "      " + getTurno() 
+            + "      " + getConsultorio();
     }
 }

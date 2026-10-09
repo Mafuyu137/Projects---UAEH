@@ -126,6 +126,23 @@ public interface Actions {
         return -1;
     }
 
+    // No esta el id para medico
+    static int hayId (ArrayList<Medico> lista, String id, String tipoM){
+        for (int i = 0; i < lista.size(); i++){
+            Medico check = lista.get(i);
+            // Devuelve -2 si el medico buscado no coincide con el tipo de medico a buscar
+            if (check instanceof General){
+                if (check.getIdEmpleado().equals(id) && tipoM.equals("general")) return i;
+                else if (check.getIdEmpleado().equals(id) && tipoM.equals("especialista")) return -2;
+            }
+            else if (check instanceof Especialista){
+                if (check.getIdEmpleado().equals(id) && tipoM.equals("especialista")) return i;
+                else if (check.getIdEmpleado().equals(id) && tipoM.equals("general")) return -2;
+            }
+        }
+        return -1;
+    }
+
      // checar si esta paciente
     static int hayPaciente (ArrayList<Paciente> lista, int id){
         for (int i = 0; i < lista.size(); i++){
@@ -226,9 +243,7 @@ public interface Actions {
         return fechaNacimiento;
     }
 
-}
-
-// Arreglo para la eliminacion de las consultas de un medico
+    // Arreglo para la eliminacion de las consultas de un medico
     static ArrayList <Integer> listaConsultas(ArrayList <Consulta> lista, String id){
         ArrayList <Integer> c = new ArrayList <>();
         
@@ -249,3 +264,5 @@ public interface Actions {
         
         return c;
     }
+
+}

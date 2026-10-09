@@ -93,17 +93,17 @@ public class Consulta implements Serializable {
         return "\nNo. Consulta: " + getNoConsulta()
             + "\nId Empleado: " + getIdEmpleado()
             + "\nNo. Paciente: " + getNoPaciente()
-            + "\nFecha de Consulta: " + getFechaConsultaa()
+            + "\nFecha de Consulta: " + getFechaConsulta()
             + "\nDiagnostico: " + getDiagnostico()
             + "\n";
     }
 
     public String getDatosTab() {
-        return "\nNo. Consulta: " + getNoConsulta()
-            + "\tId Empleado: " + getIdEmpleado()
-            + "\tNo. Paciente: " + getNoPaciente()
-            + "\tFecha de Consulta: " + getFechaConsulta()
-            + "\tDiagnostico: " + getDiagnostico()
+        return "      " + getNoConsulta()
+            + "      " + getIdEmpleado()
+            + "      " + getNoPaciente()
+            + "      " + getFechaConsulta()
+            + "      " + getDiagnostico()
             + "\n";
     }
 }

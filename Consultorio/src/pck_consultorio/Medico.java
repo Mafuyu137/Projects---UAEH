@@ -113,20 +113,20 @@ public class Medico implements Serializable {
     }
 
     public String getDatos(){
-        return "\nId Empleado: " getIdEmpleado() 
-            + "\nNombre:" + getNombre() 
+        return "\nId Empleado: " + getIdEmpleado() 
+            + "\nNombre: " + getNombre() 
             + "\nDireccion: " + getDireccion() 
-            + "\nTelefono" + getTelefono() 
+            + "\nTelefono: " + getTelefono() 
             + "\nF. Nacimiento: " + getFechaNacimiento() 
-            + "\nF. Contratacion" + getFechaContratacion();
+            + "\nF. Contratacion: " + getFechaContratacion();
     }
 
     public String getDatosTab(){
-        return "\nId Empleado: " + getIdEmpleado() 
-            + "\tNombre:" + getNombre() 
-            + "\tDireccion: " + getDireccion() 
-            + "\tTelefono" + getTelefono() 
-            + "\tF. Nacimiento: " + getFechaNacimiento() 
-            + "\tF. Contratacion" + getFechaContratacion();
+        return "\n " + getIdEmpleado() 
+            + "      " + getNombre() 
+            + "      " + getDireccion() 
+            + "      " + getTelefono() 
+            + "      " + getFechaNacimiento() 
+            + "      " + getFechaContratacion();
     }
 }

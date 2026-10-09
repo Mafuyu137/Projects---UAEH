@@ -101,7 +101,7 @@ public class Paciente implements Serializable {
     }
 
     public String getDatos() {
-        return "\nNo. Paciente: " + getPaciente()
+        return "\nNo. Paciente: " + getNoPaciente()
             + "\nNombre: " + getNombre()
             + "\nDireccion: " + getDireccion()
             + "\nTelefono: " + getTelefono()
@@ -111,12 +111,12 @@ public class Paciente implements Serializable {
     }
 
     public String getDatosTab() {
-        return "\nNo. Paciente: " + getPaciente()
-            + "\tNombre: " + getNombre()
-            + "\tDireccion: " + getDireccion()
-            + "\tTelefono: " + getTelefono()
-            + "\tF. Nacimiento: " + getFechaNacimiento()
-            + "\tCorreo: " + getCorreo()
+        return "      " + getNoPaciente()
+            + "      " + getNombre()
+            + "      " + getDireccion()
+            + "      " + getTelefono()
+            + "      " + getFechaNacimiento()
+            + "      " + getCorreo()
             + "\n";
     }
 
