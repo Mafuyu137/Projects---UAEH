@@ -118,8 +118,7 @@ public class Medico implements Serializable {
             + "\nDireccion: " + getDireccion() 
             + "\nTelefono" + getTelefono() 
             + "\nF. Nacimiento: " + getFechaNacimiento() 
-            + "\nF. Contratacion" + getFechaContratacion() 
-            + "\n";
+            + "\nF. Contratacion" + getFechaContratacion();
     }
 
     public String getDatosTab(){
