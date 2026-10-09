@@ -171,7 +171,7 @@ public class TestConsultorio implements Actions{
 
                     diagnostico = Actions.checkString("Diagnostico: ", "Alta de una consulta", rexLet);
 
-                    Consulta cnslta = new Consulta (noConsulta,idEmpleado,noPaciente,fechaConsulta,diagnostico);
+                    Consulta cnslta = new Consulta (noConsulta,id,noPaciente,fechaConsulta,diagnostico);
                     consultas.add(cnslta);
 
                     break;
@@ -311,8 +311,19 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 12: {
-                    
-
+                    if (consultas.isEmpty()) {
+                        JOptionPane.showMessageDialog(null,"No hay consultas registradas.","Consultar consulta",JOptionPane.2);
+                        break;
+                    }
+                
+                    noConsulta = Actions.entradaNumerica(1, 1000,"Ingrese el número de la consulta:","Consultar consulta","número de consulta");
+                    int i = Actions.hayConsulta(consultas, noConsulta);
+                    if (i != -1) {
+                        JOptionPane.showMessageDialog(null,consultas.get(i).getDatos(),"Detalle de la consulta",JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null,"No existe una consulta con ese número.","Consulta no encontrada",JOptionPane.0);
+                    }
+                                    
                     break;
                 }
                 
