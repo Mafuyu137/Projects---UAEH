@@ -439,8 +439,49 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 16: {
+                    if(consultas.isEmpty())
+                        JOptionPane.showMessageDialog(null,"Aun no existen consultas registradas","Eliminar una consulta",1);
+                    else {
+                        noConsulta = Actions.entradaNumerica(0,1000,"Ingrese numero de la Consulta", "Eliminar una Consulta", rexNum);
+                        aBorrar = Actions.hayConsulta(consultas, noConsulta);
+                        if (aBorrar == -1)
+                            JOptionPane.showMessageDialog(null,"No se encontro una consulta con el numero ingresado","Eliminar una consulta",1);
+                        else{
+                            // Buscar medico y paciente relacionados con la consulta
+                            int indiceMedico = Actions.hayId(medicos,consultas.get(aBorrar).getIdEmpleado());
+                            int indicePaciente = Actions.hayPaciente(pacientes,consultas.get(aBorrar).getNoPaciente());
+                
+                            String tipoMedico;
+                
+                            if (medicos.get(indiceMedico) instanceof Especialista) {
+                                tipoMedico = "MÉDICO ESPECIALISTA";
+                            } else {
+                                tipoMedico = "MÉDICO FAMILIAR";
+                            }
+                
+                            String detalle =
+                                "DETALLE DE UNA CONSULTA\n" 
+                                + "No. Consulta: " 
+                                + consultas.get(aBorrar).getNoConsulta() 
+                                + "\n\n" 
+                                + tipoMedico + "\n" 
+                                + medicos.get(indiceMedico).getDatos() + "\n\n" 
+                                + "PACIENTE\n" 
+                                + pacientes.get(indicePaciente).getDatos() + "\n\n" 
+                                + "Fecha de consulta: "
+                                + consultas.get(aBorrar).getFechaConsulta() + "\n"
+                                + "Diagnóstico: "
+                                + consultas.get(aBorrar).getDiagnostico();
+                                    
+                            cnfrm = JOptionPane.showConfirmDialog(null,detalle + "\n\n¿Esta seguro de eliminar esta consulta?",
+                                    "Eliminar una consulta",JOptionPane.YES_NO_OPTION,2);
+                            if (cnfrm == JOptionPane.YES_OPTION){
+                                consultas.remove(aBorrar);
+                                JOptionPane.showMessageDialog(null,"Consulta eliminada con exito","Eliminar una consulta",1);
+                            }
+                        }
+                    }
                     
-
                     break;
                 }
                 
