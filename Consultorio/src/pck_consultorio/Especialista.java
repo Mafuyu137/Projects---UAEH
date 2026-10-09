@@ -60,7 +60,7 @@ public class Especialista extends Medico{
     @Override
     public String getDatos(){
         String get = super.getDatos();
-        return get + getEspecialidad() + "   " + getArea() + "   " + getEnfermera_o() + "\n";
+        return get + getEspecialidad() + "        " + getArea() + "       " + getEnfermera_o() + "\n";
     }
     
 }

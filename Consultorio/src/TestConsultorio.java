@@ -78,7 +78,7 @@ public class TestConsultorio implements Actions{
                     fechaNacimiento = Actions.fNacimiento();
                     fechaContratacion = Actions.ingresoFecha("Alta de un medico", "Contratacion");
 
-                    turno = Actions.checkString("Ingresa el turno", "Alta de un medico", "turno");
+                    turno = Actions.checkString("Ingresa el turno", "Alta de un medico", rexLet);
                     consultorio = Actions.entradaNumerica(1, 7, "Ingresa el No. de consultorio", "Alta de un medico", "No. consultorio");
 
                     General grl = new General(id, nombre, direccion, telefono, fechaNacimiento, fechaContratacion, turno, consultorio);
@@ -175,8 +175,8 @@ public class TestConsultorio implements Actions{
                 
                 case 5: {
                     String arriba = """
-                                    IdEmpleado      Nombre     Direccion     Telefono     F. Nacimiento   F. Contratacion     Turno     Consultorio";   
-                                    _____________________________________________________________________________________
+                                    IdEmpleado      Nombre     Direccion     Telefono     F. Nacimiento   F. Contratacion     Turno     Consultorio   
+                                    _______________________________________________________________________________________________________________
                                     
                                     """;
                     String lista = "";
@@ -200,7 +200,7 @@ public class TestConsultorio implements Actions{
                 case 6: {
                     String arriba = """
                                     IdEmpleado      Nombre     Direccion     Telefono     F. Nacimiento   F. Contratacion     Especialidad     Area      Enfermera(o)
-                        		    __________________________________________________________________________________________________
+                        		    _________________________________________________________________________________________________________________________________
 
                                     """;
                     String lista = "";

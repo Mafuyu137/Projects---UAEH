@@ -113,11 +113,11 @@ public class Medico implements Serializable {
     }
 
     public String getDatos(){
-        return getIdEmpleado() + "   " + 
-               getNombre() + "   " + 
-               getDireccion() + "   " + 
-               getTelefono() + "   " +
-               getFechaNacimiento() + "   " +
-               getFechaContratacion() + "   ";
+        return getIdEmpleado() + "        " + 
+               getNombre() + "        " + 
+               getDireccion() + "       " + 
+               getTelefono() + "       " +
+               getFechaNacimiento() + "       " +
+               getFechaContratacion() + "       ";
     }
 }
