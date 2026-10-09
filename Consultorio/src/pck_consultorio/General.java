@@ -47,7 +47,17 @@ public class General extends Medico {
 
     @Override
     public String getDatos(){
-        String get = super.getDatos();
-        return get + getTurno() + "        " + getConsultorio() +  "\n";
+        return super.getDatos() 
+            + "\nTurno: " + getTurno() 
+            + "\nConsultorio: " + getConsultorio() 
+            +  "\n";
+    }
+
+    @Override
+    public String getDatosTab(){
+        return super.getDatosTab() 
+            + "\tTurno: " + getTurno() 
+            + "\tConsultorio: " + getConsultorio() 
+            +  "\n";
     }
 }
