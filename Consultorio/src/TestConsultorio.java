@@ -159,16 +159,17 @@ public class TestConsultorio implements Actions{
                     }
 
                     //Verificar el numero de paciente
-                    noPaciente = Actions.entradaNumerica(1, 1000,"Ingrese el número del paciente","Alta de una consulta","número de paciente"
-                    );
+                    noPaciente = Actions.entradaNumerica(1, 1000,"Ingrese el número del paciente","Alta de una consulta","número de paciente");
                     if (Actions.hayPaciente(pacientes, noPaciente) == -1) {
                         JOptionPane.showMessageDialog(null, "No existe un paciente con ese número","Error de registro de consulta",2);
                         break;
                     }
                     
+                    
                     //Validar fecha de consulta
+                    fechaConsulta = Actions.ingresoFecha("Fecha de consulta: ", "Alta de una consulta");
 
-                    //Leer diagnostico
+                    diagnostico = Actions.checkString("Diagnostico: ", "Alta de una consulta", rexLet);
 
                     break;
                 }
@@ -232,7 +233,7 @@ public class TestConsultorio implements Actions{
                     String lista = "";
 
                     for (Paciente paciente : pacientes){
-                         lista += pacientes.getDatosTab();
+                         lista += paciente.getDatosTab();
                     }
 
                     //Comprobar que existen pacientes
@@ -251,7 +252,7 @@ public class TestConsultorio implements Actions{
                     String lista = "";
 
                     for (Consulta consulta : consultas){
-                         lista += consultas.getDatosTab();
+                         lista += consulta.getDatosTab();
                     }
 
                     //Comprobar que existen consultas
