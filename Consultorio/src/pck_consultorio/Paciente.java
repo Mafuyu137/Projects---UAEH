@@ -92,8 +92,8 @@ public class Paciente implements Serializable {
         return telefono;
     }
 
-    public Fecha getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getFechaNacimiento() {
+        return fechaNacimiento.getFecha();
     }
 
     public String getCorreo() {
@@ -101,7 +101,23 @@ public class Paciente implements Serializable {
     }
 
     public String getDatos() {
-        return "\nNo. Paciente: "
+        return "\nNo. Paciente: " + getPaciente()
+            + "\nNombre: " + getNombre()
+            + "\nDireccion: " + getDireccion()
+            + "\nTelefono: " + getTelefono()
+            + "\nF. Nacimiento: " + getFechaNacimiento()
+            + "\nCorreo: " + getCorreo()
+            + "\n";
+    }
+
+    public String getDatosTab() {
+        return "\nNo. Paciente: " + getPaciente()
+            + "\tNombre: " + getNombre()
+            + "\tDireccion: " + getDireccion()
+            + "\tTelefono: " + getTelefono()
+            + "\tF. Nacimiento: " + getFechaNacimiento()
+            + "\tCorreo: " + getCorreo()
+            + "\n";
     }
 
 }
