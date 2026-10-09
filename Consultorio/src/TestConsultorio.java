@@ -171,6 +171,9 @@ public class TestConsultorio implements Actions{
 
                     diagnostico = Actions.checkString("Diagnostico: ", "Alta de una consulta", rexLet);
 
+                    Consulta cnslta = new Consulta (noConsulta,idEmpleado,noPaciente,fechaConsulta,diagnostico);
+                    consultas.add(cnslta);
+
                     break;
                 }
                 
@@ -293,12 +296,17 @@ public class TestConsultorio implements Actions{
                 }
                 
                 case 11: {
-                    do {
-                        noPaciente = Actions.entradaNumerica(0,1000,"Ingrese numero del paciente", "Alta de un paciente", rexNum);
-                        if (Actions.hayPaciente(pacientes, noPaciente) != -1)  JOptionPane.showMessageDialog(null, "Ya existe el numero de paciente, ingrese otro", "Error al ingresar", 2);
-                    } while(Actions.hayPaciente(pacientes, noPaciente) != -1);
-                    
-                    
+                    if (pacientes.isEmpty()) { 
+                        JOptionPane.showMessageDialog(null,"No hay pacientes registrados","Consultar paciente",2); 
+                        break; 
+                    }
+                    noPaciente = Actions.entradaNumerica(0,1000,"Ingrese el número del paciente: ","Consultar paciente","número de paciente");
+                    int i = Actions.hayPaciente(pacientes, noPaciente); 
+                    if (i != -1) {  
+                        JOptionPane.showMessageDialog(null,pacientes.get(i).getDatos(),"Detalle del paciente",JOptionPane.1); 
+                    } else { 
+                        JOptionPane.showMessageDialog(null,"No existe un paciente con ese número", "Paciente no encontrado", JOptionPane.2); 
+                    }
                     break;
                 }
                 
