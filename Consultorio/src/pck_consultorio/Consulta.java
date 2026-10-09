@@ -102,7 +102,7 @@ public class Consulta implements Serializable {
         return "\nNo. Consulta: " + getNoConsulta()
             + "\tId Empleado: " + getIdEmpleado()
             + "\tNo. Paciente: " + getNoPaciente()
-            + "\tFecha de Consulta: " + getFechaConsultaa()
+            + "\tFecha de Consulta: " + getFechaConsulta()
             + "\tDiagnostico: " + getDiagnostico()
             + "\n";
     }
