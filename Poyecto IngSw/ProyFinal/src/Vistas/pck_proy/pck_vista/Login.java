@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package pck_vista;
+package Vistas.pck_proy.pck_vista;
 
 import javax.swing.ImageIcon;
 
@@ -10,12 +10,12 @@ import javax.swing.ImageIcon;
  *
  * @author ailov
  */
-public class Interfaz_Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form Interfaz_Login
      */
-    public Interfaz_Login() {
+    public Login () {
         initComponents();
         this.setLocationRelativeTo(null);
         lbl_icono.setIcon(cambiarTam("logo-telep.png",60,60));
@@ -54,7 +54,6 @@ public class Interfaz_Login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
 
@@ -226,10 +225,8 @@ public class Interfaz_Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Interfaz_Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login ().setVisible(true);
         });
     }
 
